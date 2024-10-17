@@ -3,13 +3,12 @@ import './App.css';
 import { Weather } from './Weather';
 
 function App() {
+  const apiKey = 'bbc315ca7320fbcb18e2761ab526002b';  
   const [city, setCity] = useState<string>('');
   const [error, setError] = useState<null | string>(null);
   const [weather, setWeather] = useState<{ temp: number, description: string } | null>(null);
 
-  const fetchWeather = () => {
-    const apiKey = 'bbc315ca7320fbcb18e2761ab526002b';
-    
+const fetchWeather = () => {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`)
       .then(response => response.json())
       .then(json => {
@@ -17,10 +16,12 @@ function App() {
           setError('City not found'); // Устанавливаем ошибку, если город не найден
           setWeather(null); // Сбрасываем погоду
         } else {
-          setWeather({
-            temp: json.main.temp,
-            description: json.weather[0].description
-          });
+            const tempCelsius = json.main.temp - 273.15;
+
+            setWeather({
+              temp:  parseFloat(tempCelsius.toFixed(2)), // Округляем до двух знаков после запятой
+              description: json.weather[0].description
+            });
           setError(null); // Сбрасываем ошибку, если запрос успешен
         }
       })
