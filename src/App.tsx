@@ -34,7 +34,7 @@ function App() {
   return (
     <div className="App">
       <h1>Weather App</h1>
-      <div>
+      <div  style={{ padding: '2vh'}}>
         <input 
         type='text' 
         onChange={(e) => setCity(e.currentTarget.value)} 
@@ -42,16 +42,10 @@ function App() {
       />
       <button onClick={fetchWeather}>Get weather</button>
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      {weather && <Weather temp={weather.temp} description={weather.description} />}
+     
       </div>
-      
-      {/* {weather && (
-        <div>
-          <h2>Weather in {city}</h2>
-          <p>Temperature: {weather.temp} K</p>
-          <p>Weather: {weather.description}</p>
-        </div>
-      )} */}
+       {weather && <Weather temp={weather.temp} description={weather.description} />}
+ 
     </div>
   );
 }

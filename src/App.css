@@ -34,8 +34,14 @@ button:hover {
   background-color: #45a049; /* Более темный зеленый при наведении */
 }
 
-.weather {
+.weather-container {
   margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.weather {
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
